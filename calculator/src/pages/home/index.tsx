@@ -208,7 +208,7 @@ const Home = () => {
     }
 
     return (
-        <div className={(isTouchDevice ? "" : "cursor-none") + " canvas w-screen h-dvh font-google-sans"}>
+        <div className={(isTouchDevice ? "" : "cursor-none") + " canvas w-screen h-dvh font-outfit"}>
             <div className={(isHidden ? "translate-y-full opacity-0 pointer-events-none" : "translate-y-0 opacity-100") + ` flex flex-col lg:flex-row justify-between gap-5 px-5 pt-5 pb-4 items-center fixed bottom-1 w-full select-none transition-all duration-300 ease-in-out z-10`}>
                 <div className="hidden lg:flex justify-start">
                     <Button
@@ -222,6 +222,8 @@ const Home = () => {
                     </Button>
                 </div>
                 <Group className="z-20 bg-zinc-900 flex justify-between p-3 rounded-lg shadow-zinc-700/50 shadow-lg items-center">
+                    <div className="text-white font-bold text-center px-2 font-outfit">skrb.ai</div>
+                    <div className="bg-white h-5 w-0.5 "/>
                     {SWATCHES.map((swatchColor: string) => (
                         <ColorSwatch
                             key={swatchColor}
@@ -232,7 +234,7 @@ const Home = () => {
                             }}
                         />
                     ))}
-                    <div className="bg-white h-5 w-0.5 "></div>
+                    <div className="bg-white h-5 w-0.5 "/>
                     <ColorSwatch
                         color="white"
                         onClick={() => setEraser(true)}
