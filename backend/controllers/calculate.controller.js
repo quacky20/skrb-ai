@@ -8,12 +8,17 @@ const getResponse = async (req, res) => {
         return res.status(400).json({
             error: 'No valid image provided'
         })
-    
     }
     response = await calculate(image, dict_of_vars)
     const answers = JSON.parse(response)
 
-    res.status(200).json(answers)
+    if (response === '[]'){
+        return res.status(400).json({
+            error: 'No valid image provided'
+        })
+    }
+
+    return res.status(200).json(answers)
 }
 
 module.exports = { getResponse }

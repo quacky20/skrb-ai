@@ -21,6 +21,10 @@ interface GeneratedResult {
     answer: string;
 }
 
+interface ErrorResponse {
+    error: string
+}
+
 const Home = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const [isDrawing, setIsDrawing] = useState(false)
@@ -168,6 +172,10 @@ const Home = () => {
 
                 const resp = await response.data
 
+                if ('error' in resp) {
+                    throw new Error((resp as ErrorResponse).error)
+                }
+
                 resp.forEach((data: Response) => {
                     if (data.assign === true) {
                         setDictOfVars({
@@ -208,11 +216,14 @@ const Home = () => {
                 });
             }
         } catch (err) {
-            console.log(err)
-            setError((err as Error).message)
+            console.log((err as Error).message)
+            if (axios.isAxiosError(err) && err.response?.data?.error) {
+                setError(err.response.data.error)
+            } else {
+                setError((err as Error).message || 'An unexpected error occurred')
+            }
         } finally {
             setIsLoading(false)
-            setError(null)
         }
     }
 

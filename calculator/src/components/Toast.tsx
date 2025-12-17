@@ -15,7 +15,7 @@ function Toast({ content, onClose }: { content: string, onClose: () => void }) {
                         onClose()
                     }, 500);
                 }
-            }, 2000);
+            }, 3000);
         }
         else {
             setIsVisible(false)
