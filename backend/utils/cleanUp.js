@@ -1,4 +1,9 @@
 function responseCleanup(response) {
+
+    if(!response || typeof response !== 'string'){
+        return '[]'
+    }
+
     let cleaned = response.replace(/```json\s*/g, '').replace(/```\s*/g, '');
 
     cleaned = cleaned.replace(/`/g, '')
